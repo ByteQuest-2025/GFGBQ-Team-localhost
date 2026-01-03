@@ -1,20 +1,18 @@
 # 1. Problem Statement
-**Building an accessible, inclusive, and secure voting platform** that enables users with disabilities (visual impairment, motor disabilities) to cast their votes independently using voice commands and accessibility features.
+**PS 10:** Ensuring Equal Electoral Participation for Specially Abled Individuals
 
 # 2. Project Name
-**IncluVote** - Accessible Voice-Enabled Voting Platform
-
+**IncluVote** 
 # 3. Team Name
 **ByteQuest 2025** (Team localhost)
 
-# 4. Deployed Link
-> *Coming soon* <!-- Replace with your deployed URL -->
 
-# 5. Demonstration Video (2 minutes)
-> 📹 [Watch Demo Video](#) <!-- Replace with your video link -->
 
-# 6. PPT Link
-> 📊 [View Presentation](#) <!-- Replace with your PPT link -->
+# 4. Demonstration Video (2 minutes)
+> 📹 [Watch Demo Video](https://drive.google.com/drive/folders/1EDuNyL6h_doN5jFVw4bhjbBLP9i8YIrd?usp=drive_link)
+
+# 5. PPT Link
+> 📊 [View Presentation](https://drive.google.com/drive/folders/1EDuNyL6h_doN5jFVw4bhjbBLP9i8YIrd?usp=drive_link)
 
 ---
 
