@@ -105,8 +105,32 @@ const VoiceControl: React.FC = () => {
         // Clean command
         const cleanCmd = command.replace(/[.,!?]/g, '');
 
+        // Voting specific commands
+        if (cleanCmd.includes('vote for') || cleanCmd.includes('select') || cleanCmd.includes('choose') ||
+            cleanCmd.includes('option') || cleanCmd.includes('candidate') || cleanCmd.includes('number')) {
+            let name = cleanCmd.replace(/vote for|select|choose|option|candidate|number/g, '').trim();
+            // Remove common prefixes
+            name = name.replace(/^(the) /g, '').trim();
+
+            if (name.length > 0) { // allow single digit "1"
+                console.log("Dispatching vote for:", name);
+                window.dispatchEvent(new CustomEvent('voice-vote', { detail: { name } }));
+            }
+        }
+
+        // Step navigation actions
+        else if (cleanCmd.includes('next') || cleanCmd.includes('continue') || cleanCmd.includes('proceed')) {
+            window.dispatchEvent(new CustomEvent('voice-action', { detail: { action: 'next' } }));
+        }
+        else if (cleanCmd.includes('back') || cleanCmd.includes('previous') || cleanCmd.includes('return')) {
+            window.dispatchEvent(new CustomEvent('voice-action', { detail: { action: 'back' } }));
+        }
+        else if (cleanCmd.includes('submit') || cleanCmd.includes('confirm') || cleanCmd.includes('vote') || cleanCmd.includes('yes')) {
+            window.dispatchEvent(new CustomEvent('voice-action', { detail: { action: 'submit' } }));
+        }
+
         // Navigation
-        if (cleanCmd.includes('home')) {
+        else if (cleanCmd.includes('home')) {
             speak("Navigating home");
             navigate('/');
         } else if (cleanCmd.includes('vote') || cleanCmd.includes('voting')) {

@@ -8,15 +8,17 @@ interface CandidateCardProps {
   candidate: Candidate;
   isSelected: boolean;
   onSelect: (candidateId: string) => void;
+  index?: number;
 }
 
 /**
  * Accessible candidate selection card with symbol, name, and party
  */
-const CandidateCard: React.FC<CandidateCardProps> = ({ 
-  candidate, 
-  isSelected, 
-  onSelect 
+const CandidateCard: React.FC<CandidateCardProps> = ({
+  candidate,
+  isSelected,
+  onSelect,
+  index
 }) => {
   const { speak, settings } = useAccessibility();
   const { t } = useLanguage();
@@ -59,7 +61,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
     >
       {/* Selection indicator */}
       {isSelected && (
-        <div 
+        <div
           className="absolute top-4 right-4 w-8 h-8 rounded-full bg-primary flex items-center justify-center animate-scale-in"
           aria-hidden="true"
         >
@@ -67,10 +69,19 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         </div>
       )}
 
+      {/* Voice Mode Badge */}
+      {settings.voiceMode && typeof index === 'number' && (
+        <div
+          className="absolute top-4 left-4 bg-black/80 text-white px-3 py-1 rounded-full text-xs font-bold animate-fade-in border border-white/20 shadow-lg z-10"
+        >
+          Say "Option {index + 1}"
+        </div>
+      )}
+
       {/* Symbol */}
-      <div 
+      <div
         className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl mb-4 transition-transform group-hover:scale-110"
-        style={{ 
+        style={{
           backgroundColor: `hsl(${candidate.color} / 0.15)`,
           border: `2px solid hsl(${candidate.color} / 0.3)`,
         }}
@@ -84,7 +95,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
         <h3 className="font-heading font-bold text-xl text-foreground mb-1">
           {candidate.name}
         </h3>
-        <p 
+        <p
           className="font-medium text-sm mb-3"
           style={{ color: `hsl(${candidate.color})` }}
         >
@@ -96,7 +107,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       {/* Slogan */}
-      <div 
+      <div
         className="mt-4 pt-4 border-t border-border text-center"
         aria-label={`Slogan: ${candidate.slogan}`}
       >
@@ -106,7 +117,7 @@ const CandidateCard: React.FC<CandidateCardProps> = ({
       </div>
 
       {/* Hover/Focus indicator */}
-      <div 
+      <div
         className="absolute inset-0 rounded-xl border-2 border-transparent transition-colors pointer-events-none group-focus-visible:border-primary"
         aria-hidden="true"
       />
