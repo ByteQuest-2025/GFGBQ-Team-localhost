@@ -7,6 +7,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { AccessibilityProvider } from "@/contexts/AccessibilityContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import AccessibilityPanel from "@/components/AccessibilityPanel";
+import VoiceControl from "@/components/VoiceControl";
 import Index from "./pages/Index";
 import Vote from "./pages/Vote";
 import Confirmation from "./pages/Confirmation";
@@ -30,6 +31,7 @@ const App = () => (
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              <VoiceControl />
             </BrowserRouter>
             {/* Persistent Accessibility Panel */}
             <AccessibilityPanel />
