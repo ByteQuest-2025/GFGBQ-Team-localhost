@@ -12,6 +12,8 @@ import Index from "./pages/Index";
 import Vote from "./pages/Vote";
 import Confirmation from "./pages/Confirmation";
 import NotFound from "./pages/NotFound";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +28,8 @@ const App = () => (
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
                 <Route path="/vote" element={<Vote />} />
                 <Route path="/confirmation" element={<Confirmation />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

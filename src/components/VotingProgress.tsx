@@ -10,12 +10,13 @@ interface Step {
 
 interface VotingProgressProps {
   currentStep: number;
+  totalSteps?: number;
 }
 
 /**
  * Visual progress indicator for the voting flow
  */
-const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
+const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep, totalSteps = 4 }) => {
   const { speak, settings } = useAccessibility();
   const { t } = useLanguage();
 
@@ -23,7 +24,8 @@ const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
     { id: 1, label: t.voting.stepSelect },
     { id: 2, label: t.voting.stepReview },
     { id: 3, label: t.voting.stepConfirm },
-  ];
+    { id: 4, label: 'Verify' },
+  ].slice(0, totalSteps);
 
   React.useEffect(() => {
     if (settings.voiceMode) {
@@ -35,7 +37,7 @@ const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
   }, [currentStep, settings.voiceMode]);
 
   return (
-    <nav 
+    <nav
       className="w-full mb-12"
       aria-label="Voting progress"
     >
@@ -46,7 +48,7 @@ const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
           const isPending = step.id > currentStep;
 
           return (
-            <li 
+            <li
               key={step.id}
               className="flex items-center"
             >
@@ -67,7 +69,7 @@ const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
                     <span>{step.id}</span>
                   )}
                 </div>
-                <span 
+                <span
                   className={`
                     mt-2 text-xs sm:text-sm font-medium text-center
                     ${isActive ? 'text-primary' : 'text-muted-foreground'}
@@ -79,7 +81,7 @@ const VotingProgress: React.FC<VotingProgressProps> = ({ currentStep }) => {
 
               {/* Connector line */}
               {index < steps.length - 1 && (
-                <div 
+                <div
                   className={`
                     w-8 sm:w-16 h-1 mx-2 rounded-full
                     ${isCompleted ? 'bg-[hsl(var(--success))]' : 'bg-muted'}
